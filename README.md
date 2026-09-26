@@ -1,16 +1,60 @@
-# React + Vite
+# 💰 Syntecxhub Expense Tracker
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A responsive expense tracker application built with React as part of the Syntecxhub Web Development Internship.
 
-Currently, two official plugins are available:
+## 🚀 Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- Add new expenses
+- Delete expenses
+- Search expenses by title
+- Filter expenses by category
+- Calculate total expenses
+- Calculate average expense
+- Display total number of expenses
+- Fetch initial expense data from a mock API
+- Loading and error handling
+- Save expenses using Local Storage
+- Responsive design for desktop and mobile devices
 
-## React Compiler
+## 🛠️ Technologies Used
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- React
+- JavaScript
+- HTML
+- CSS
+- Vite
+- REST API
+- Local Storage
 
-## Expanding the ESLint configuration
+## ⚛️ React Hooks Used
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+This project demonstrates the following React hooks:
+
+- `useState` – manages form inputs, expenses, search and filters
+- `useEffect` – handles API fetching and Local Storage
+- `useRef` – focuses the expense title input
+- `useMemo` – optimizes expense calculations and filtering
+- `useCallback` – optimizes add and delete functions
+
+## 🌐 Mock API
+
+The application uses JSONPlaceholder as a mock API to fetch initial expense data.
+
+## 📂 Project Structure
+
+```text
+Syntecxhub_Expense_Tracker/
+│
+├── public/
+├── src/
+│   ├── App.jsx
+│   ├── App.css
+│   ├── index.css
+│   └── main.jsx
+│
+├── .gitignore
+├── index.html
+├── package.json
+├── package-lock.json
+└── README.md
+```
