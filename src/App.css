@@ -200,3 +200,18 @@ button:hover {
     grid-template-columns: 1fr;
   }
 }
+.status-message,
+.error-message {
+  text-align: center;
+  padding: 15px;
+  border-radius: 8px;
+}
+
+.status-message {
+  background: #f3f4f6;
+}
+
+.error-message {
+  background: #fee2e2;
+  color: #b91c1c;
+}
