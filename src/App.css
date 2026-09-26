@@ -40,23 +40,29 @@ main {
 
 /* Summary */
 .summary {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.summary-card {
   background: white;
   padding: 25px;
   border-radius: 15px;
   text-align: center;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-  margin-bottom: 25px;
 }
 
-.summary h2 {
+.summary-card h2 {
   margin: 0;
-  font-size: 18px;
+  font-size: 16px;
   color: #6b7280;
 }
 
-.summary p {
+.summary-card p {
   margin: 10px 0 0;
-  font-size: 40px;
+  font-size: 30px;
   font-weight: bold;
 }
 
@@ -184,9 +190,13 @@ button:hover {
     font-size: 26px;
   }
 
-  .summary p {
-    font-size: 32px;
-  }
+  .summary {
+  grid-template-columns: 1fr;
+}
+
+.summary-card p {
+  font-size: 32px;
+}
 }
 .filters {
   display: grid;

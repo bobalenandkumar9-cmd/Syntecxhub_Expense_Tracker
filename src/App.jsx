@@ -143,9 +143,26 @@ useEffect(() => {
 
       <main>
         <section className="summary">
-          <h2>Total Expenses</h2>
-          <p>₹{totalExpense}</p>
-        </section>
+  <div className="summary-card">
+    <h2>Total Expenses</h2>
+    <p>₹{totalExpense}</p>
+  </div>
+
+  <div className="summary-card">
+    <h2>Total Records</h2>
+    <p>{expenses.length}</p>
+  </div>
+
+  <div className="summary-card">
+    <h2>Average Expense</h2>
+    <p>
+      ₹
+      {expenses.length > 0
+        ? Math.round(totalExpense / expenses.length)
+        : 0}
+    </p>
+  </div>
+</section>
 
         <section className="form-section">
           <h2>Add Expense</h2>
