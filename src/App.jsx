@@ -24,30 +24,43 @@ function App() {
 
   // Load sample expenses
   useEffect(() => {
-  const fetchExpenses = async () => {
-    try {
-      const response = await fetch(
-        "https://jsonplaceholder.typicode.com/posts?_limit=5"
-      );
+  const savedExpenses = localStorage.getItem("expenses");
 
-      const data = await response.json();
+  if (savedExpenses) {
+    setExpenses(JSON.parse(savedExpenses));
+  } else {
+    const fetchExpenses = async () => {
+      try {
+        const response = await fetch(
+          "https://jsonplaceholder.typicode.com/posts?_limit=5"
+        );
 
-      const formattedExpenses = data.map((item) => ({
-        id: item.id,
-        title: item.title.slice(0, 20),
-        amount: item.id * 100,
-        category: "Other",
-      }));
+        const data = await response.json();
 
-      setExpenses(formattedExpenses);
-    } catch (error) {
-      console.error("Error fetching expenses:", error);
-    }
-  };
+        const formattedExpenses = data.map((item) => ({
+          id: item.id,
+          title: item.title.slice(0, 20),
+          amount: item.id * 100,
+          category: "Other",
+        }));
 
-  fetchExpenses();
+        setExpenses(formattedExpenses);
+      } catch (error) {
+        console.error("Error fetching expenses:", error);
+      }
+    };
+
+    fetchExpenses();
+  }
 }, []);
-
+useEffect(() => {
+  if (expenses.length > 0) {
+    localStorage.setItem(
+      "expenses",
+      JSON.stringify(expenses)
+    );
+  }
+}, [expenses]);
   // Add expense
   const addExpense = useCallback(
     (e) => {
