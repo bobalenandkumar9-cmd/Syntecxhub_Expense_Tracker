@@ -1,4 +1,10 @@
-import { useState, useEffect, useRef, useMemo, useCallback } from "react";
+import {
+  useState,
+  useEffect,
+  useRef,
+  useMemo,
+  useCallback,
+} from "react";
 import "./App.css";
 
 function App() {
@@ -6,6 +12,8 @@ function App() {
   const [title, setTitle] = useState("");
   const [amount, setAmount] = useState("");
   const [category, setCategory] = useState("Food");
+  const [search, setSearch] = useState("");
+  const [filterCategory, setFilterCategory] = useState("All");
 
   const titleInputRef = useRef(null);
 
@@ -85,6 +93,19 @@ function App() {
       0
     );
   }, [expenses]);
+  const filteredExpenses = useMemo(() => {
+  return expenses.filter((expense) => {
+    const matchesSearch = expense.title
+      .toLowerCase()
+      .includes(search.toLowerCase());
+
+    const matchesCategory =
+      filterCategory === "All" ||
+      expense.category === filterCategory;
+
+    return matchesSearch && matchesCategory;
+  });
+}, [expenses, search, filterCategory]);
 
   return (
     <div className="app">
@@ -134,18 +155,40 @@ function App() {
         </section>
 
         <section className="expense-section">
-          <h2>Recent Expenses</h2>
+  <h2>Recent Expenses</h2>
 
-          {expenses.length === 0 ? (
+  <div className="filters">
+    <input
+      type="text"
+      placeholder="🔎 Search expenses..."
+      value={search}
+      onChange={(e) => setSearch(e.target.value)}
+    />
+
+    <select
+      value={filterCategory}
+      onChange={(e) => setFilterCategory(e.target.value)}
+    >
+      <option value="All">All Categories</option>
+      <option value="Food">Food</option>
+      <option value="Transport">Transport</option>
+      <option value="Shopping">Shopping</option>
+      <option value="Entertainment">Entertainment</option>
+      <option value="Other">Other</option>
+    </select>
+  </div>
+
+          {filteredExpenses.length === 0 ? (
             <p className="empty">No expenses added yet.</p>
           ) : (
             <div className="expense-list">
-              {expenses.map((expense) => (
+              {filteredExpenses.map((expense) => (
                 <div className="expense-card" key={expense.id}>
                   <div>
                     <h3>{expense.title}</h3>
                     <span>{expense.category}</span>
                   </div>
+                  
 
                   <div className="expense-right">
                     <strong>₹{expense.amount}</strong>
